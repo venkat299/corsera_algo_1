@@ -15,6 +15,8 @@ hs_err_pid*
 help_files/
 download/
 hello/
+slides/
+assg3/collinear/
 *.zip
 
 

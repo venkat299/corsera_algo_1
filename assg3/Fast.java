@@ -35,28 +35,32 @@ public class Fast {
 
             Point refPoint = pArray[i];
                         Arrays.sort(pArray
-            	 //, i , N - 1
+            	 , i , N - 1
             	, refPoint.SLOPE_ORDER);
-            int j = i + 1;
+                        System.out.println("refPoint:"+refPoint.toString());
+            int j = i+1;
+            // System.out.println(">>> "+refPoint.toString()+" "+pArray[j]);
+            //int j = 0;
             Point currPoint = pArray[j];
             j++;
+            if (j >= N) break;
             Point nextPoint = pArray[j];
             double currSlope = refPoint.slopeTo(currPoint);
             double nextSlope = refPoint.slopeTo(nextPoint);
             int count = 0;
-            while (j < N-2) {
+            while (j < N) {
                 if (currSlope == nextSlope) {
                     count++;
                 } else {
                     if (count >= 2) {
-                        print(i, count, j, pArray);
+                        print(i, count, j, pArray,refPoint);
                     }
                     count = 0;
                 }
                 j++;
                 if (j >= N) {
                     if (count >= 2) {
-                        print(i, count, j, pArray);
+                        print(i, count, j, pArray,refPoint);
                         count = 0;
 
                     }
@@ -75,14 +79,14 @@ public class Fast {
         StdDraw.show(0);
 
     }
-    private static void print(int i, int count, int j, Point[] pArray) {
+    private static void print(int i, int count, int j, Point[] pArray,Point refPoint) {
         StdDraw.setPenRadius(0.001);
-        System.out.print(i + " " + count + " --- " + pArray[i]);
+        System.out.print(i + " " + count + " --- " + refPoint.toString());
         j = j - 1;
         // pArray[i].drawTo(pArray[j]);
         while (count >= 0) {
             System.out.print(" -> " + pArray[j] );
-            pArray[i].drawTo(pArray[j]);
+            refPoint.drawTo(pArray[j]);
             j--;
             count--;
         }
